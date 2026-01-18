@@ -1,0 +1,150 @@
+🛡️ ESCÁNER DE ANTIVIRUS - GUÍA DE USO
+
+═══════════════════════════════════════════════════════════════════
+
+INSTALACIÓN (PRIMERA VEZ):
+
+1. Navega a la carpeta:
+   cd "ant virus"
+
+2. Crea entorno virtual:
+   python -m venv .venv
+
+3. Activa el entorno:
+   • Linux/Mac: source .venv/bin/activate
+   • Windows: .venv\Scripts\activate
+
+4. Instala dependencias:
+   pip install -r requirements.txt
+
+═══════════════════════════════════════════════════════════════════
+
+FORMAS DE USAR:
+
+🔥 OPCIÓN 1 - Escanear un archivo (MÁS RÁPIDO):
+─────────────────────────────────────────────────
+python antivirus.py /ruta/al/archivo.py
+python antivirus.py ~/Descargas/programa.exe
+python antivirus.py ./script.bat
+
+Resultado en segundos - te dice si es malware o seguro.
+
+
+📁 OPCIÓN 2 - Escanear carpeta completa:
+─────────────────────────────────────────────────
+python antivirus.py ~/Descargas
+python antivirus.py ./proyectos/
+python antivirus.py /home/usuario/documentos
+
+Escanea TODO en la carpeta recursivamente.
+Te muestra: archivos escaneados, seguros, y amenazas.
+
+
+🎯 OPCIÓN 3 - Menú interactivo (paso a paso):
+─────────────────────────────────────────────────
+python antivirus.py
+
+Se abre menú:
+  1. Escanear archivo
+  2. Escanear carpeta
+  3. Ver resumen
+  4. Salir
+
+Elige opción y sigue las instrucciones.
+
+
+📊 OPCIÓN 4 - Generar reporte HTML:
+─────────────────────────────────────────────────
+python generate_report.py ~/Descargas reporte.html
+python generate_report.py /ruta/carpeta
+
+Genera un reporte profesional en HTML con gráficos.
+
+═══════════════════════════════════════════════════════════════════
+
+CASOS DE USO REALES:
+
+✅ Verificar descarga sospechosa:
+   python antivirus.py ~/Descargas/archivo_desconocido.exe
+
+✅ Revisar carpeta de proyectos:
+   python antivirus.py ./mis_proyectos/
+
+✅ Escanear archivos de un cliente:
+   python antivirus.py ~/cliente_archivos/
+
+✅ Generar reporte de seguridad:
+   python generate_report.py ~/servidor/ reporte.html
+
+═══════════════════════════════════════════════════════════════════
+
+INTERPRETACIÓN DE RESULTADOS:
+
+✓ ARCHIVO SEGURO
+  → Puedes usarlo sin problemas
+
+✗ ARCHIVO POTENCIALMENTE PELIGROSO
+  → NO lo ejecutes, ELIMINA el archivo
+
+AMENAZAS DETECTADAS:
+  ⚠️ EJECUCIÓN DE COMANDOS → Intenta ejecutar comandos del SO
+  🔓 ACCESO AL SISTEMA → Intenta acceder a archivos sensibles
+  💾 ROBO DE DATOS → Enviaría tu información a servidores
+  🔐 CIFRADO → Ransomware (encripta tus archivos)
+  🔄 PERSISTENCIA → Se instalaría permanentemente
+  📥 DESCARGA DE MALWARE → Descargaría más virus
+  �� OFUSCACIÓN → Código oculto (típico de malware)
+
+═══════════════════════════════════════════════════════════════════
+
+AUTOMATIZAR ESCANEOS:
+
+LINUX/MAC - Script automático cada hora:
+───────────────────────────────────────────
+1. Crear archivo monitor.sh:
+   cat > monitor.sh << 'SCRIPT'
+   #!/bin/bash
+   while true; do
+     python antivirus.py ~/Descargas
+     echo "Próximo escaneo en 1 hora..."
+     sleep 3600
+   done
+   SCRIPT
+
+2. Hacer ejecutable:
+   chmod +x monitor.sh
+
+3. Ejecutar:
+   ./monitor.sh
+
+
+WINDOWS - Tarea programada:
+───────────────────────────
+1. Abre PowerShell como Administrador
+2. Copia esto:
+   $Trigger = New-ScheduledTaskTrigger -Daily -At 2am
+   $Action = New-ScheduledTaskAction -Execute "python" `
+     -Argument "antivirus.py C:\Users\$env:USERNAME\Downloads"
+   Register-ScheduledTask -TaskName "AntivirusScan" `
+     -Trigger $Trigger -Action $Action
+
+3. Ejecutará escaneo cada día a las 2 AM
+
+═══════════════════════════════════════════════════════════════════
+
+TIPS:
+
+💡 Escanea antes de ejecutar cualquier archivo desconocido
+💡 Verifica descargas de internet
+💡 Revisa qué amenaza específica detectó
+💡 No ignores las advertencias del escáner
+💡 Elimina archivos marcados como peligrosos
+
+═══════════════════════════════════════════════════════════════════
+
+¿PREGUNTAS?
+
+Ver archivo HOWTO.md para guía detallada
+Chequear ejemplo: python antivirus.py test_malware_example.py
+
+═══════════════════════════════════════════════════════════════════
